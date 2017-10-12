@@ -14,13 +14,13 @@ files_good.sort()
 files_bad = os.listdir(path_b)
 files_bad.sort()
 
-if len(files_good) > 0:
-    ng = files_good.pop().split('-')[1].split('.')[0]
+if len(files_good) > 1:
+    ng = int(files_good.pop().split('-')[1].split('.')[0])
 else:
     ng = 1
 
-if len(files_bad) > 0:
-    nb = files_bad.pop().split('-')[1].split('.')[0]
+if len(files_bad) > 1:
+    nb = int(files_bad.pop().split('-')[1].split('.')[0])
 else:
     nb = 1
 
@@ -52,7 +52,8 @@ with open(path_g + 'controle-good.txt', 'a') as txt_good:
                         break
 
                     elif key == ord('p'):
-                        raw_input('Press any key to continue...')
+                        raw_input('Press any key to continue...\n')
+                        print 'Continuing...\n'
 
                     elif key == ord('q'):
                         vid_cap.release()
