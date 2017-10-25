@@ -17,14 +17,12 @@ try:
         files.remove(k)
     files.sort(key=lambda x: int(x.split('.')[0]))
 
-    for f in os.listdir(path):
-        actual_name, extension = f.split('.')
+    for f in files:
+        _, extension = f.split('.')
         new_name = str(pic_num) + '.' + extension
         pic_num += 1
-        if new_name == actual_name:
-            continue
-        else:
+        if new_name != f:
             os.rename(path + f, path + new_name)
-            print 'file ' + f + 'renamed to ' + new_name + '.'
+            print 'file ' + f + ' renamed to ' + new_name + '.'
 except Exception as e:
     print str(e)
