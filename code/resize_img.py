@@ -1,10 +1,6 @@
 import cv2
 import os
 
-path_src = 'C:\Users\Alexandre-Asus\Documents\projeto-graduacao\img\\negatives\\'
-path_dst = 'C:\Users\Alexandre-Asus\Documents\projeto-graduacao\img\\negatives_gray\\'
-pic_num = 1
-
 
 def crop(img, width, height):
     '''Corta a imagem no tamanho informado'''
@@ -35,21 +31,51 @@ def crop_ratio(img, width, height):
 
 
 def resize(img, width, height):
-    '''Reduz a imagem da imagem para o desejado'''
-    h, w = img.shape[:2]
-    pw = width/(w*1.0)
-    ph = height/(h*1.0)
-    p = max(pw, ph)
+    '''Reduz o tamanho da imagem para o tamanho desejado'''
+    h, w = img.shape[:2]  # Pega o tamanho atual
+    pw = width/(w*1.0)  # Porcentagem width
+    ph = height/(h*1.0)  # Porcentagem heigth
+    p = min(pw, ph)  # Pega a maior porcentagem para fazer a reducao
     return cv2.resize(img, (int(w*p), int(h*p)), interpolation=cv2.INTER_AREA)
 
 
-files = os.listdir(path_src)
-files.sort()
-for f in files:
-    img = cv2.imread(path_src + f, cv2.IMREAD_GRAYSCALE)
-    croped_img = crop_ratio(img, 352, 240)
-    resized_img = resize(croped_img, 352, 240)
+path_src = 'C:\Users\Alexandre-Asus\Documents\projeto-graduacao\img\good-vid\\1.jpg\\'
+path_dst = 'C:\Users\Alexandre-Asus\Documents\projeto-graduacao\img\good-vid-gray\\'
+
+# files = os.listdir(path_src)
+# pic_num = 1
+# length = len(os.listdir(path_dst))
+# if length > 1:  # tem o arq .txt
+#     pic_num += length
+# try:
+#     for f in files:
+#         name = path_src + f
+#         if name.split('.')[1] == 'jpg':
+#             new_img = cv2.imread(name, cv2.IMREAD_GRAYSCALE)
+#             # shape = new_img.shape[:2]
+#             # if max(shape) > 352:
+#             #     new_img = crop_ratio(new_img, 352, 240)
+#             #     new_img = resize(new_img, 352, 240)
+#             #     print 'cortei e alterei o tamanho'
+#
+#             new_name = str(pic_num) + '.jpg'
+#             cv2.imwrite(path_dst + new_name, new_img)
+#             pic_num += 1
+#             print new_name
+#         else:
+#             continue
+# except Exception as e:
+#     print str(e)
+
+
+try:
+    new_img = cv2.imread(path_src, cv2.IMREAD_GRAYSCALE)
+    shape = new_img.shape[:2]
+
+    new_img = resize(new_img, 352, 240)
+
     new_name = str(pic_num) + '.jpg'
-    cv2.imwrite(path_dst + new_name, resized_img)
-    pic_num += 1
-    print new_name
+    cv2.imwrite(path_dst + new_name, new_img)
+
+except Exception as e:
+    print str(e)
