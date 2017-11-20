@@ -35,7 +35,7 @@ def resize(img, width, height):
     h, w = img.shape[:2]  # Pega o tamanho atual
     pw = width/(w*1.0)  # Porcentagem width
     ph = height/(h*1.0)  # Porcentagem heigth
-    p = min(pw, ph)  # Pega a maior porcentagem para fazer a reducao
+    p = min(pw, ph)  # Pega a menor porcentagem para fazer a reducao
     return cv2.resize(img, (int(w*p), int(h*p)), interpolation=cv2.INTER_AREA)
 
 

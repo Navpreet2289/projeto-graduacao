@@ -1,10 +1,10 @@
 import os
 import cv2
 
-PATH_SRC = 'C:\Users\Alexandre-Asus\Documents\projeto-graduacao\img\positives_gray\\'
-PATH_DST = 'C:\Users\Alexandre-Asus\Documents\Haartraining Stuff\STEPS\step 02\\rawdata\\'
-DESIRED_EXTENSION = 'bmp'
-REMOVE_OLD = False
+PATH_SRC = 'C:\Users\Alexandre-Asus\Documents\projeto-graduacao\img\placas\\fotos\\rois\\'
+PATH_DST = 'C:\Users\Alexandre-Asus\Documents\projeto-graduacao\img\placas\\fotos\\rois\\'
+DESIRED_EXTENSION = 'png'
+REMOVE_OLD = True
 
 try:
     files = os.listdir(PATH_SRC)

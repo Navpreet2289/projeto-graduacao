@@ -2,8 +2,8 @@ import cv2
 import os
 
 path = '../vid/02-10-17/'
-path_g = path + 'good-vid/'
-path_b = path + 'bad-vid/'
+path_g = '../img/good-vid/'
+path_b = '../img/bad-vid/'
 
 files = os.listdir(path)
 files.sort()

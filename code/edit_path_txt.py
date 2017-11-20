@@ -1,7 +1,8 @@
 
-PATH_SRC = 'C:\Users\Alexandre-Asus\Documents\projeto-graduacao\img\positives-gray-all\\'
-# PATH_DST = 'C:\Users\Alexandre-Asus\Documents\projeto-graduacao\img\positives_gray\\'
-FILE_NAME = 'info-all-full'
+PATH_SRC = 'C:\Users\Alexandre-Asus\Documents\projeto-graduacao\img\created-pos-7\\'
+PATH_DST = 'C:\Users\Alexandre-Asus\Documents\projeto-graduacao\img\created-pos-7\\'
+FILE_NAME = 'info-created'
+IMG_EXTENSION = '.jpg'
 NEW_IMG_EXTENSION = '.jpg'
 new_lines = []
 
@@ -40,6 +41,22 @@ new_lines = []
 #         output.close()
 # except Exception as e:
 #     print str(e)
+
+# Adding full path to created list
+
+try:
+    with open(PATH_SRC + FILE_NAME + '.txt', 'r') as inp:
+        lines = inp.readlines()
+        inp.close()
+
+    lines.sort(key=lambda x: int(x.split('_')[0].lstrip('0')))
+    for l in lines:
+        new_lines.append(PATH_DST + l)
+    with open(PATH_SRC + FILE_NAME + '-full.txt', 'w') as output:
+        output.writelines(new_lines)
+        output.close()
+except Exception as e:
+    print str(e)
 
 # Removing full path:
 
